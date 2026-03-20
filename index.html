@@ -7,7 +7,396 @@
 <meta name="description" content="16 people. 18-seater Tempo Traveller. Chembra heart lake. 605m zipline. 6,000-year-old caves. 900 Kandi offroad jeeps. The most cinematic company outing of 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+/* ================================================================
+   WAYANAD COMPANY OUTING 2026 — style.css
+   Theme: Luxury editorial · Cormorant + Montserrat + DM Mono
+================================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ivory:#FAF7F2; --cream:#F3EEE5; --cream2:#E6DDD0; --parch:#DAD0BC;
+  --forest:#1A3324; --forest2:#223D2E; --forest3:#2E5540;
+  --sage:#4A7A5A; --sage2:#6B9B7A; --mint:#B8D8C4;
+  --gold:#B8860B; --gold2:#C8960C; --goldlt:#D4A843; --goldpale:#F0DFA8;
+  --ink:#1C1C1A; --char:#363330; --stone:#6A6460; --mist:#9A9490;
+  --red:#8B1A1A; --ease:cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:var(--ivory);color:var(--ink);overflow-x:hidden;cursor:none;}
+body::after{content:'';position:fixed;inset:0;z-index:9997;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;opacity:.022;}
+
+/* CURSOR */
+#CUR{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;}
+#CI{width:6px;height:6px;background:var(--forest);border-radius:50%;position:absolute;transform:translate(-50%,-50%);transition:transform .15s var(--ease);}
+#CO{width:28px;height:28px;border:1.5px solid var(--forest);border-radius:50%;position:absolute;transform:translate(-50%,-50%);transition:all .3s var(--ease);}
+body.hov #CO{width:46px;height:46px;border-color:var(--gold2);background:rgba(184,134,11,.06);}
+
+/* NAV */
+#NAV{position:fixed;top:0;left:0;right:0;z-index:900;padding:1.4rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:all .5s var(--ease);}
+#NAV.stuck{background:rgba(250,247,242,.97);backdrop-filter:blur(24px);padding:.9rem 4rem;border-bottom:1px solid var(--cream2);box-shadow:0 2px 30px rgba(26,51,36,.08);}
+.nl{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ivory);}
+#NAV.stuck .nl{color:var(--forest);}
+.nl span{color:var(--goldlt);}
+.nlinks{display:flex;gap:2rem;list-style:none;}
+.nlinks a{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s;}
+#NAV.stuck .nlinks a{color:var(--stone);}
+.nlinks a:hover{color:var(--goldlt);}
+#NAV.stuck .nlinks a:hover{color:var(--forest);}
+.ncta{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;padding:.4rem 1.2rem;border:1.5px solid rgba(255,255,255,.4);color:var(--ivory);background:transparent;border-radius:2px;text-decoration:none;transition:all .25s;}
+#NAV.stuck .ncta{border-color:var(--forest);color:var(--forest);}
+.ncta:hover{background:var(--goldlt);border-color:var(--goldlt);color:var(--forest);}
+
+/* HERO */
+#HERO{height:100vh;min-height:680px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.h-bg{position:absolute;inset:0;}
+.h-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%;transform:scale(1.07);animation:hzoom 22s ease forwards;}
+@keyframes hzoom{to{transform:scale(1);}}
+.h-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,51,36,.62) 0%,rgba(26,51,36,.44) 30%,rgba(26,51,36,.74) 70%,var(--forest) 100%);}
+.h-cnt{position:relative;z-index:2;text-align:center;padding:0 2rem;max-width:960px;width:100%;}
+.h-kicker{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.44em;color:rgba(255,255,255,.42);text-transform:uppercase;margin-bottom:1.8rem;display:flex;align-items:center;gap:1.4rem;justify-content:center;opacity:0;animation:fu .8s var(--ease) .3s forwards;}
+.hk-ln{width:28px;height:1px;background:var(--goldlt);}
+.h-title{margin-bottom:.7rem;overflow:hidden;}
+.ht-line{display:block;font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--ivory);line-height:.86;opacity:0;transform:translateY(60px);letter-spacing:.03em;animation-fill-mode:forwards;}
+.ht1{font-size:clamp(2.8rem,6.5vw,5.2rem);animation:su 1s var(--ease) .55s forwards;animation-fill-mode:forwards;}
+.ht2{font-size:clamp(3.8rem,9.5vw,8rem);color:var(--goldlt);font-style:italic;text-shadow:0 3px 40px rgba(180,130,20,.3);animation:su 1s var(--ease) .75s forwards;}
+.ht3{font-size:clamp(1.4rem,3vw,2.6rem);font-weight:300;letter-spacing:.22em;color:rgba(255,255,255,.6);animation:su 1s var(--ease) .92s forwards;}
+@keyframes su{to{opacity:1;transform:none;}}
+@keyframes fu{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.h-divider{width:50px;height:1px;background:var(--goldlt);margin:.7rem auto 1.3rem;opacity:0;animation:fu .8s var(--ease) 1.1s forwards;}
+.h-sub{font-size:clamp(.78rem,1.05vw,.9rem);color:rgba(255,255,255,.58);line-height:1.84;max-width:520px;margin:0 auto 1.8rem;font-weight:300;opacity:0;animation:fu .8s var(--ease) 1.25s forwards;}
+.h-btns{display:flex;gap:.9rem;justify-content:center;opacity:0;animation:fu .8s var(--ease) 1.4s forwards;}
+.hb1{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.82rem 2.2rem;background:var(--goldlt);color:var(--forest);border:none;border-radius:2px;cursor:pointer;text-decoration:none;font-weight:600;transition:all .3s var(--ease);}
+.hb1:hover{background:var(--ivory);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.28);}
+.hb2{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.82rem 2rem;border:1.5px solid rgba(255,255,255,.34);color:rgba(255,255,255,.72);background:transparent;border-radius:2px;cursor:pointer;text-decoration:none;transition:all .25s;}
+.hb2:hover{border-color:var(--goldlt);color:var(--goldlt);}
+.h-cd{margin-top:1.8rem;opacity:0;animation:fu .8s var(--ease) 1.6s forwards;}
+.cd-lbl{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.24);margin-bottom:.85rem;}
+.cd-row{display:flex;gap:.6rem;justify-content:center;align-items:flex-end;}
+.cd-blk{text-align:center;min-width:60px;}
+.cd-n{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--goldlt);line-height:1;display:block;font-weight:600;}
+.cd-u{font-family:'DM Mono',monospace;font-size:.4rem;letter-spacing:.16em;color:rgba(255,255,255,.2);text-transform:uppercase;margin-top:.1rem;}
+.cd-sep{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:rgba(212,168,67,.28);line-height:1;padding-bottom:.22rem;animation:blnk 1s infinite;}
+@keyframes blnk{0%,100%{opacity:1;}50%{opacity:.1;}}
+.h-scroll{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.45rem;color:rgba(255,255,255,.15);font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.22em;text-transform:uppercase;animation:bob 2.5s ease-in-out infinite;opacity:.6;}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
+.h-scl{width:1px;height:34px;background:linear-gradient(to bottom,transparent,var(--goldlt));}
+
+/* STATS STRIP */
+#STRIP{background:var(--forest);}
+.strip-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);}
+.sitem{padding:1.8rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;}
+.sitem:last-child{border-right:none;}
+.sitem::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:2px;background:var(--goldlt);transition:left .4s var(--ease),right .4s var(--ease);}
+.sitem:hover::after{left:12%;right:12%;}
+.sv{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--goldlt);line-height:1;font-weight:600;}
+.sl{font-family:'DM Mono',monospace;font-size:.42rem;color:rgba(255,255,255,.22);letter-spacing:.18em;text-transform:uppercase;margin-top:.4rem;}
+
+/* TT SECTION */
+#TT{background:var(--forest2);padding:8rem 2rem;position:relative;overflow:hidden;}
+#TT::before{content:'';position:absolute;top:-200px;right:-150px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,67,.06) 0%,transparent 70%);pointer-events:none;}
+.tt-wrap{max-width:1200px;margin:0 auto;}
+.tt-header{text-align:center;margin-bottom:4rem;}
+.tt-eyebrow{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.44em;text-transform:uppercase;color:var(--goldlt);margin-bottom:.85rem;display:flex;align-items:center;gap:.9rem;justify-content:center;}
+.tt-eyebrow::before,.tt-eyebrow::after{content:'';width:26px;height:1px;background:var(--goldlt);}
+.tt-headline{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6.5vw,5.5rem);color:var(--ivory);line-height:.88;font-weight:700;letter-spacing:.02em;margin-bottom:1rem;}
+.tt-headline em{color:var(--goldlt);font-style:italic;}
+.tt-tagline{font-size:.88rem;color:rgba(255,255,255,.44);font-weight:300;line-height:1.82;max-width:620px;margin:0 auto;}
+.tt-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.tt-story{font-size:.88rem;color:rgba(255,255,255,.48);line-height:1.88;font-weight:300;margin-bottom:2.2rem;padding-left:1.4rem;border-left:2px solid rgba(212,168,67,.22);}
+.tt-story strong{color:rgba(212,168,67,.78);font-weight:600;}
+.tt-specs{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;margin-bottom:1.8rem;}
+.tt-spec{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:.88rem 1rem;transition:all .3s var(--ease);}
+.tt-spec:hover{background:rgba(212,168,67,.07);border-color:rgba(212,168,67,.24);}
+.tt-spec-lbl{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;}
+.tt-spec-val{font-family:'Montserrat',sans-serif;font-size:.86rem;color:var(--ivory);font-weight:600;}
+.tt-cost-card{background:linear-gradient(135deg,rgba(212,168,67,.14),rgba(212,168,67,.05));border:1px solid rgba(212,168,67,.32);border-radius:10px;padding:1.5rem 1.8rem;margin-bottom:1.4rem;}
+.tt-cost-title{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(212,168,67,.55);margin-bottom:1rem;}
+.tt-cost-rows{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem;}
+.tt-cost-row{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.tt-cost-row:last-child{border-bottom:none;}
+.ttr-label{font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.4);}
+.ttr-detail{font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(255,255,255,.22);}
+.ttr-val{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--ivory);font-weight:600;}
+.tt-total-row{display:flex;justify-content:space-between;align-items:center;padding-top:.8rem;border-top:1px solid rgba(212,168,67,.2);margin-top:.4rem;}
+.tt-total-lbl{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--goldlt);font-weight:600;}
+.tt-total-val{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--goldlt);font-weight:700;line-height:1;}
+.tt-tags{display:flex;flex-wrap:wrap;gap:.44rem;}
+.tt-tag{font-family:'DM Mono',monospace;font-size:.47rem;padding:.23rem .68rem;border:1px solid rgba(212,168,67,.22);color:rgba(212,168,67,.62);border-radius:2px;background:rgba(212,168,67,.05);}
+.tt-right{}
+.tt-img-wrap{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/10;margin-bottom:1.2rem;border:1px solid rgba(212,168,67,.14);box-shadow:0 30px 80px rgba(0,0,0,.44);}
+.tt-img-wrap img{width:100%;height:100%;object-fit:cover;}
+.tt-depart-badge{position:absolute;bottom:1.2rem;left:1.2rem;right:1.2rem;background:rgba(26,51,36,.92);backdrop-filter:blur(14px);border:1px solid rgba(212,168,67,.26);border-radius:6px;padding:.9rem 1.1rem;display:flex;justify-content:space-between;align-items:center;}
+.tdb-label{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(212,168,67,.5);margin-bottom:.15rem;}
+.tdb-val{font-family:'Montserrat',sans-serif;font-size:.9rem;color:var(--ivory);font-weight:700;}
+.tdb-sub{font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(255,255,255,.32);margin-top:.1rem;}
+.tt-route-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:1.3rem 1.5rem;}
+.tt-route-title{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(212,168,67,.52);margin-bottom:1rem;}
+.route-stops{display:flex;flex-direction:column;gap:0;}
+.rs{display:grid;grid-template-columns:72px 1fr;position:relative;padding:.55rem 0;}
+.rs:not(:last-child)::after{content:'';position:absolute;left:28px;top:1.55rem;bottom:-.5rem;width:1px;background:rgba(212,168,67,.12);}
+.rs-dot{position:absolute;left:24px;top:.78rem;width:9px;height:9px;border-radius:50%;background:rgba(212,168,67,.28);border:1.5px solid rgba(212,168,67,.55);}
+.rs-dot.key{background:var(--goldlt);border-color:var(--goldlt);box-shadow:0 0 8px rgba(212,168,67,.4);}
+.rs-time{font-family:'DM Mono',monospace;font-size:.52rem;color:rgba(212,168,67,.65);text-align:right;padding-right:.8rem;font-weight:500;padding-top:.06rem;}
+.rs-info{padding-left:1.1rem;}
+.rs-name{font-family:'Montserrat',sans-serif;font-size:.78rem;color:rgba(255,255,255,.68);font-weight:500;}
+.rs-note{font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(255,255,255,.28);margin-top:.08rem;}
+
+/* SECTION BASE */
+.section{padding:8rem 2rem;}
+.sec-in{max-width:1200px;margin:0 auto;}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold2);margin-bottom:.85rem;display:flex;align-items:center;gap:.8rem;}
+.eyebrow::before{content:'';width:22px;height:1px;background:var(--gold2);}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5.5vw,4.5rem);color:var(--forest);line-height:.88;font-weight:700;margin-bottom:.9rem;}
+.stitle em{color:var(--gold2);font-style:italic;}
+.ssub{font-size:.88rem;color:var(--stone);line-height:1.85;max-width:540px;font-weight:400;}
+
+/* ITINERARY */
+#ITI{background:var(--ivory);}
+.day-tabs{display:flex;gap:0;border-bottom:2px solid var(--cream2);margin-bottom:3.5rem;flex-wrap:wrap;}
+.dtab{padding:.85rem 1.6rem;font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mist);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .25s;}
+.dtab.on{color:var(--forest);border-bottom-color:var(--forest);}
+.dtab:hover:not(.on){color:var(--char);}
+.dpanel{display:none;}
+.dpanel.on{display:block;animation:fu .4s var(--ease);}
+.tl{position:relative;}
+.tl::before{content:'';position:absolute;left:90px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--forest3),rgba(47,82,64,.06));}
+.tlrow{display:grid;grid-template-columns:90px 1fr;position:relative;}
+.tlt{padding:1.2rem .8rem 1.2rem 0;text-align:right;font-family:'DM Mono',monospace;font-size:.56rem;color:var(--gold2);letter-spacing:.05em;line-height:1.4;font-weight:500;}
+.tldot{position:absolute;left:85px;top:1.35rem;width:11px;height:11px;border-radius:50%;background:var(--ivory);border:2px solid var(--sage2);z-index:1;transition:all .3s;}
+.tldot.s{background:var(--forest);border-color:var(--forest);box-shadow:0 0 0 4px rgba(26,51,36,.12);}
+.tldot.g{background:var(--gold2);border-color:var(--gold2);box-shadow:0 0 0 4px rgba(184,134,11,.15);}
+.tldot.r{background:var(--red);border-color:var(--red);box-shadow:0 0 0 4px rgba(139,26,26,.12);}
+.tlrow:hover .tldot:not(.s):not(.g):not(.r){background:var(--forest);border-color:var(--forest);}
+.tlcard{margin-left:2.2rem;padding:1.1rem 1.4rem;border:1px solid var(--cream2);border-radius:7px;background:var(--ivory);margin-bottom:.55rem;transition:all .3s;box-shadow:0 1px 5px rgba(26,51,36,.04);}
+.tlrow:hover .tlcard{background:var(--cream);border-color:var(--mint);box-shadow:0 6px 24px rgba(26,51,36,.09);}
+.tlttl{font-family:'Montserrat',sans-serif;font-size:.93rem;font-weight:700;color:var(--forest);margin-bottom:.36rem;}
+.tldesc{font-size:.81rem;color:var(--char);line-height:1.76;margin-bottom:.48rem;}
+.tltips{display:flex;flex-direction:column;gap:.22rem;margin-bottom:.52rem;}
+.tip{font-family:'DM Mono',monospace;font-size:.59rem;color:var(--sage);font-weight:500;}
+.tip::before{content:'→ ';}
+.tltags{display:flex;flex-wrap:wrap;gap:.3rem;}
+.tag{font-family:'DM Mono',monospace;font-size:.47rem;padding:.17rem .54rem;border-radius:2px;border:1px solid var(--cream2);color:var(--stone);background:var(--cream);}
+.tag.g{border-color:rgba(47,82,64,.28);color:var(--forest3);background:rgba(47,82,64,.06);}
+.tag.a{border-color:rgba(184,134,11,.28);color:var(--gold);background:rgba(184,134,11,.06);}
+.tag.r{border-color:rgba(139,26,26,.24);color:var(--red);background:rgba(139,26,26,.05);}
+
+/* ACTIVITIES */
+#ACT{background:var(--cream);}
+.act-chips-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:2.4rem;}
+.ach{display:flex;align-items:center;gap:.72rem;padding:.62rem 1.05rem;border:1.5px solid var(--cream2);border-radius:4px;cursor:pointer;transition:all .3s var(--ease);background:var(--ivory);}
+.ach:hover,.ach.sel{border-color:var(--forest);background:var(--forest);}
+.ach:hover .ach-num,.ach.sel .ach-num{color:var(--goldlt);}
+.ach:hover .ach-name,.ach.sel .ach-name{color:var(--ivory);}
+.ach:hover .ach-day,.ach.sel .ach-day{color:rgba(255,255,255,.42);}
+.ach:hover .ach-arr,.ach.sel .ach-arr{color:var(--goldlt);transform:translateY(-2px) rotate(-40deg);}
+.ach-num{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--cream2);line-height:1;font-weight:600;transition:color .25s;}
+.ach-day{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);transition:color .25s;}
+.ach-name{font-family:'Montserrat',sans-serif;font-size:.77rem;font-weight:600;color:var(--char);transition:color .25s;}
+.ach-arr{font-size:.68rem;color:var(--cream2);transition:all .3s var(--ease);}
+.ach-badge{font-family:'DM Mono',monospace;font-size:.41rem;padding:.13rem .43rem;border-radius:2px;display:block;margin-top:.22rem;transition:all .25s;}
+.ach-badge.sat{background:rgba(47,82,64,.1);color:var(--forest3);border:1px solid rgba(47,82,64,.2);}
+.ach-badge.sun{background:rgba(184,134,11,.1);color:var(--gold);border:1px solid rgba(184,134,11,.2);}
+.ach-badge.hero{background:rgba(184,134,11,.14);color:var(--gold2);border:1px solid rgba(184,134,11,.28);}
+.ach:hover .ach-badge,.ach.sel .ach-badge{background:rgba(255,255,255,.1);color:rgba(255,255,255,.58);border-color:rgba(255,255,255,.18);}
+.act-hint{display:flex;align-items:center;gap:.7rem;margin-top:1rem;margin-bottom:1.8rem;font-family:'DM Mono',monospace;font-size:.56rem;color:var(--mist);letter-spacing:.1em;}
+.hpulse{width:7px;height:7px;border-radius:50%;background:var(--gold2);animation:pulse 1.8s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,134,11,.4);}50%{box-shadow:0 0 0 8px rgba(184,134,11,0);}}
+#act-stage{display:none;margin-top:1.5rem;}
+#act-stage.show{display:block;animation:stageIn .45s var(--ease);}
+@keyframes stageIn{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+.stage-box{display:grid;grid-template-columns:1fr 430px;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--cream2);box-shadow:0 24px 70px rgba(26,51,36,.13);min-height:520px;}
+.sl-img-wrap{position:relative;overflow:hidden;}
+.sl-img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease);}
+#act-stage.show .sl-img{transform:scale(1.04);}
+.sl-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(26,51,36,.9) 100%);}
+.sl-bottom{position:absolute;bottom:0;left:0;right:0;padding:1.8rem;}
+.sl-bignum{font-family:'Cormorant Garamond',serif;font-size:5rem;color:rgba(255,255,255,.06);line-height:1;font-weight:700;}
+.sl-dbadge{display:inline-block;font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.12em;padding:.25rem .7rem;border-radius:2px;text-transform:uppercase;margin-bottom:.45rem;}
+.sl-dbadge.sat{background:var(--forest2);color:var(--mint);}
+.sl-dbadge.sun{background:var(--gold);color:var(--forest);}
+.sl-dbadge.night{background:rgba(255,255,255,.1);color:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.18);}
+.sl-htag{display:inline-block;font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.1em;padding:.25rem .7rem;border-radius:2px;text-transform:uppercase;background:var(--goldlt);color:var(--forest);font-weight:700;margin-left:.42rem;}
+.sr{background:var(--ivory);padding:2rem 2rem 1.8rem;display:flex;flex-direction:column;overflow-y:auto;}
+.sr::-webkit-scrollbar{width:3px;}
+.sr::-webkit-scrollbar-thumb{background:var(--cream2);}
+.sr-num{font-family:'DM Mono',monospace;font-size:.51rem;letter-spacing:.2em;color:var(--gold2);margin-bottom:.44rem;}
+.sr-name{font-family:'Cormorant Garamond',serif;font-size:2.1rem;color:var(--forest);line-height:.9;font-weight:700;margin-bottom:.68rem;}
+.sr-desc{font-size:.82rem;color:var(--char);line-height:1.78;margin-bottom:1.1rem;font-weight:400;}
+.sr-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:1.1rem;}
+.srf{background:var(--cream);border:1px solid var(--cream2);border-radius:5px;padding:.6rem .7rem;}
+.srf-l{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);margin-bottom:.22rem;}
+.srf-v{font-family:'Montserrat',sans-serif;font-size:.84rem;color:var(--forest);font-weight:600;}
+.sr-why-t{font-family:'DM Mono',monospace;font-size:.47rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);margin-bottom:.44rem;}
+.sr-why{display:flex;flex-direction:column;gap:.3rem;margin-bottom:1.1rem;}
+.srw{display:flex;gap:.6rem;font-size:.78rem;color:var(--stone);line-height:1.55;}
+.srw::before{content:'✦';color:var(--gold2);flex-shrink:0;font-size:.58rem;margin-top:.15rem;}
+.sr-links{display:flex;gap:.44rem;flex-wrap:wrap;margin-bottom:.9rem;}
+.srl{display:inline-flex;align-items:center;gap:.42rem;padding:.46rem .88rem;border-radius:4px;font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.05em;text-decoration:none;font-weight:500;transition:all .2s;border:1px solid;}
+.srl.maps{background:rgba(47,82,64,.07);color:var(--forest3);border-color:rgba(47,82,64,.2);}
+.srl.maps:hover{background:var(--forest);color:var(--ivory);}
+.srl.yt{background:rgba(139,26,26,.07);color:var(--red);border-color:rgba(139,26,26,.2);}
+.srl.yt:hover{background:var(--red);color:var(--ivory);}
+.srl.srch{background:var(--cream);color:var(--char);border-color:var(--cream2);}
+.srl.srch:hover{background:var(--forest);color:var(--ivory);}
+.sr-price-row{display:flex;align-items:flex-end;justify-content:space-between;border-top:1px solid var(--cream2);padding-top:.9rem;margin-top:auto;}
+.sr-price{font-family:'Cormorant Garamond',serif;font-size:2.1rem;color:var(--forest);line-height:1;font-weight:700;}
+.sr-pnote{font-family:'DM Mono',monospace;font-size:.46rem;color:var(--mist);}
+.sr-dur{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--stone);text-align:right;}
+.act-nav-row{display:flex;align-items:center;justify-content:space-between;margin-top:1.3rem;}
+.anb{display:flex;align-items:center;gap:.55rem;font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);cursor:pointer;border:none;background:none;padding:.4rem 0;transition:color .2s;}
+.anb:hover{color:var(--forest);}
+.anb:disabled{opacity:.2;cursor:default;}
+.aprog{display:flex;gap:.38rem;align-items:center;}
+.apd{width:16px;height:2px;background:var(--cream2);border-radius:1px;transition:all .3s;}
+.apd.on{background:var(--forest);width:26px;}
+
+/* HYPE */
+.hype{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.hype-half{height:60vh;min-height:380px;}
+.hb-bg{position:absolute;inset:0;}
+.hb-bg img{width:100%;height:100%;object-fit:cover;}
+.hb-ov{position:absolute;inset:0;}
+.hb-cnt{position:relative;z-index:2;text-align:center;padding:3rem 2rem;max-width:880px;}
+.hb-kick{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:1.3rem;}
+.hb-ttl{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--ivory);line-height:.88;letter-spacing:.02em;}
+.hb-ttl em{color:var(--goldlt);font-style:italic;}
+.hb-sub{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:rgba(255,255,255,.26);text-transform:uppercase;margin-top:1rem;}
+.hb-date{font-family:'Cormorant Garamond',serif;font-size:1.65rem;color:var(--goldlt);letter-spacing:.1em;margin-top:.6rem;font-weight:600;}
+.hb-cta{display:inline-block;margin-top:1.7rem;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.66rem 1.7rem;border:1.5px solid var(--goldlt);color:var(--goldlt);text-decoration:none;border-radius:2px;transition:all .25s;}
+.hb-cta:hover{background:var(--goldlt);color:var(--forest);}
+
+/* WHY */
+#WHY{background:var(--forest);}
+#WHY .eyebrow{color:var(--goldlt);}
+#WHY .eyebrow::before{background:var(--goldlt);}
+#WHY .stitle{color:var(--ivory);}
+#WHY .stitle em{color:var(--goldlt);}
+#WHY .ssub{color:rgba(255,255,255,.4);}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:3.5rem;}
+.wc{border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:1.8rem;background:rgba(255,255,255,.025);transition:all .4s var(--ease);}
+.wc:hover{border-color:rgba(212,168,67,.35);background:rgba(212,168,67,.05);transform:translateY(-4px);}
+.wc-icon{font-size:1.7rem;margin-bottom:.8rem;}
+.wc-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--goldlt);line-height:1;margin-bottom:.25rem;font-weight:700;}
+.wc-lbl{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.24);margin-bottom:.52rem;}
+.wc-desc{font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.72;font-weight:300;}
+.why-big{margin-top:3rem;padding:2.5rem 3rem;background:rgba(212,168,67,.07);border:1px solid rgba(212,168,67,.18);border-radius:12px;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+.wb-ttl{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,3rem);color:var(--ivory);line-height:.92;font-weight:700;letter-spacing:.02em;}
+.wb-ttl em{color:var(--goldlt);font-style:italic;}
+.wb-list{display:flex;flex-direction:column;gap:.7rem;}
+.wbl{display:flex;gap:.72rem;font-size:.8rem;color:rgba(255,255,255,.46);line-height:1.62;}
+.wbl::before{content:'→';color:var(--goldlt);flex-shrink:0;font-family:'DM Mono',monospace;font-size:.68rem;margin-top:.18rem;}
+
+/* BUDGET */
+#BUD{background:var(--cream);}
+.bud-layout{display:grid;grid-template-columns:1fr 360px;gap:3.5rem;margin-top:3.5rem;}
+.bud-table{display:flex;flex-direction:column;gap:.4rem;}
+.brow{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-radius:5px;border:1px solid var(--cream2);background:var(--ivory);transition:all .2s;}
+.brow:hover{background:var(--cream);border-color:var(--mint);}
+.brow.tot{background:rgba(26,51,36,.06);border-color:rgba(26,51,36,.2);}
+.brow.tot .blbl{color:var(--forest);font-weight:600;}
+.brow.tot .bval{color:var(--forest);font-size:1.18rem;}
+.brow.tt{background:rgba(184,134,11,.06);border-color:rgba(184,134,11,.24);}
+.brow.tt .blbl{color:var(--gold);font-weight:600;}
+.brow.tt .bval{color:var(--gold2);font-size:1.1rem;}
+.bleft{display:flex;flex-direction:column;gap:.06rem;}
+.blbl{font-family:'DM Mono',monospace;font-size:.61rem;color:var(--stone);}
+.bnote{font-family:'DM Mono',monospace;font-size:.47rem;color:var(--mist);}
+.bval{font-family:'Cormorant Garamond',serif;font-size:1.08rem;color:var(--forest);font-weight:600;}
+.pp{background:var(--forest);border-radius:10px;padding:2rem;text-align:center;margin-bottom:1.2rem;}
+.pp-lbl{font-family:'DM Mono',monospace;font-size:.47rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(212,168,67,.44);margin-bottom:.6rem;}
+.pp-val{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--goldlt);line-height:1;margin-bottom:.5rem;font-weight:700;}
+.pp-sub{font-size:.75rem;color:rgba(255,255,255,.34);font-style:italic;line-height:1.65;margin-bottom:1.3rem;}
+.pp-rows{display:flex;flex-direction:column;gap:.28rem;}
+.prow{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:.57rem;color:rgba(255,255,255,.25);padding:.35rem 0;border-top:1px solid rgba(255,255,255,.05);}
+.prow span:last-child{color:var(--goldlt);}
+.warn-card{background:rgba(139,26,26,.06);border:1px solid rgba(139,26,26,.14);border-radius:8px;padding:1.2rem;}
+.warn-ttl{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:.62rem;}
+.warn-item{font-family:'DM Mono',monospace;font-size:.59rem;color:var(--stone);line-height:2.1;}
+
+/* RULES */
+#RLS{background:var(--ivory);}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-top:3rem;}
+.rc{background:var(--cream);border:1px solid var(--cream2);border-radius:8px;padding:1.5rem;}
+.rc.ladies{background:rgba(184,134,11,.04);border-color:rgba(184,134,11,.18);}
+.rc.wide{grid-column:span 2;}
+.rc-icon{font-size:1.35rem;margin-bottom:.5rem;}
+.rc-ttl{font-family:'Montserrat',sans-serif;font-size:.92rem;font-weight:700;color:var(--forest);margin-bottom:.82rem;}
+.rcitems{display:flex;flex-direction:column;gap:.46rem;}
+.rci{display:flex;gap:.7rem;font-size:.78rem;color:var(--char);line-height:1.58;}
+.rci.do::before{content:'✓';color:var(--sage);font-weight:700;flex-shrink:0;}
+.rci.dont::before{content:'✕';color:var(--red);font-weight:700;flex-shrink:0;}
+.pack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:.75rem;}
+.pcol-ttl{font-family:'DM Mono',monospace;font-size:.49rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:.42rem;}
+.ladies-bar{background:var(--forest);border-radius:8px;padding:1.3rem 1.7rem;display:flex;gap:1.4rem;align-items:center;margin-top:1.4rem;}
+.lb-icon{font-size:1.4rem;flex-shrink:0;}
+.lb-txt{font-family:'DM Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.48);line-height:1.78;letter-spacing:.03em;}
+.lb-txt strong{color:var(--goldlt);}
+
+/* BOOKINGS */
+#BOOK{background:var(--forest2);padding:7rem 2rem;}
+.book-wrap{max-width:1200px;margin:0 auto;}
+.book-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:3rem;}
+.booking-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:1.6rem;transition:all .4s var(--ease);position:relative;overflow:hidden;}
+.booking-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(212,168,67,.4),transparent);transform:scaleX(0);transition:transform .4s var(--ease);}
+.booking-card:hover{border-color:rgba(212,168,67,.3);background:rgba(212,168,67,.05);transform:translateY(-3px);}
+.booking-card:hover::before{transform:scaleX(1);}
+.bk-urgency{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.6rem;display:inline-block;padding:.2rem .6rem;border-radius:2px;}
+.bk-urgency.urgent{background:rgba(139,26,26,.15);color:#d45555;border:1px solid rgba(139,26,26,.25);}
+.bk-urgency.soon{background:rgba(184,134,11,.12);color:var(--goldlt);border:1px solid rgba(184,134,11,.22);}
+.bk-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ivory);font-weight:700;margin-bottom:.35rem;}
+.bk-desc{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.68;margin-bottom:.9rem;}
+.bk-contact{display:flex;align-items:center;gap:.8rem;padding:.7rem 1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:6px;text-decoration:none;transition:all .25s;}
+.bk-contact:hover{background:rgba(212,168,67,.1);border-color:rgba(212,168,67,.25);}
+.bk-contact-icon{font-size:1rem;flex-shrink:0;}
+.bk-phone{font-family:'DM Mono',monospace;font-size:.64rem;color:var(--goldlt);letter-spacing:.06em;font-weight:500;}
+.bk-phone-note{font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(255,255,255,.28);margin-top:.08rem;}
+.bk-time{font-family:'DM Mono',monospace;font-size:.52rem;color:rgba(212,168,67,.55);margin-top:.7rem;}
+
+/* CTA */
+#CTA{background:var(--forest);padding:8rem 2rem;text-align:center;position:relative;overflow:hidden;}
+#CTA::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(212,168,67,.07) 0%,transparent 70%);pointer-events:none;}
+.cta-in{position:relative;z-index:1;}
+.cta-ttl{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,9.5vw,7.5rem);color:var(--ivory);line-height:.86;font-weight:700;letter-spacing:.02em;margin-bottom:.6rem;}
+.cta-ttl em{color:var(--goldlt);font-style:italic;}
+.cta-sub{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.28em;color:rgba(255,255,255,.22);text-transform:uppercase;margin-bottom:1.3rem;}
+.cta-date{font-family:'Cormorant Garamond',serif;font-size:1.75rem;color:var(--goldlt);letter-spacing:.12em;margin-bottom:2.5rem;font-weight:600;}
+.cta-divider{width:48px;height:1px;background:rgba(212,168,67,.28);margin:0 auto 1.7rem;}
+.cta-chips{display:flex;flex-wrap:wrap;gap:.52rem;justify-content:center;}
+.chip{font-family:'DM Mono',monospace;font-size:.52rem;padding:.28rem .8rem;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.36);border-radius:2px;}
+.chip.lime{border-color:rgba(212,168,67,.3);color:var(--goldlt);background:rgba(212,168,67,.07);}
+
+/* FOOTER */
+footer{background:var(--forest2);border-top:1px solid rgba(255,255,255,.05);padding:3.5rem 2rem 2.5rem;text-align:center;}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--ivory);letter-spacing:.06em;margin-bottom:.5rem;font-weight:700;}
+.ft-brand span{color:var(--goldlt);font-style:italic;}
+.ft-meta{font-family:'DM Mono',monospace;font-size:.47rem;color:rgba(255,255,255,.17);letter-spacing:.1em;line-height:2.4;margin-bottom:1.8rem;}
+.ft-div{width:34px;height:1px;background:rgba(212,168,67,.28);margin:1.3rem auto;}
+.ft-made{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--goldlt);letter-spacing:.2em;text-transform:uppercase;}
+
+/* REVEAL */
+.rv{opacity:1;transform:none;}
+.rv2{opacity:1;transform:none;}
+.rv3{opacity:1;transform:none;}
+.rv.on,.rv2.on,.rv3.on{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  #NAV{padding:1rem 1.5rem;} .nlinks,.ncta{display:none;}
+  .tt-grid{grid-template-columns:1fr;}
+  .stage-box{grid-template-columns:1fr;} .sl-img-wrap{height:250px;}
+  .bud-layout{grid-template-columns:1fr;}
+  .rules-grid{grid-template-columns:1fr;} .rc.wide{grid-column:span 1;}
+  .pack-grid{grid-template-columns:1fr 1fr;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+  .why-big{grid-template-columns:1fr;}
+  .strip-in{grid-template-columns:repeat(3,1fr);}
+  .book-grid{grid-template-columns:1fr;}
+  .tt-specs{grid-template-columns:1fr;}
+}
+
+</style>
 </head>
 <body>
 <div id="CUR"><div id="CI"></div><div id="CO"></div></div>
@@ -675,6 +1064,271 @@
   <div class="ft-made">Made by Gourav M</div>
 </footer>
 
-<script src="app.js"></script>
+<script>
+/* HERO ANIMATION FALLBACK */
+// Ensure hero elements are always visible even if CSS animations fail
+setTimeout(()=>{
+  document.querySelectorAll('.ht-line,.h-kicker,.h-divider,.h-sub,.h-btns,.h-cd,.h-scroll').forEach(el=>{
+    el.style.opacity='1';
+    el.style.transform='none';
+  });
+},1500);
+// Also trigger immediately on load
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('.ht-line,.h-kicker,.h-divider,.h-sub,.h-btns,.h-cd').forEach(el=>{
+      el.style.opacity='1';
+      el.style.transform='none';
+    });
+  },800);
+});
+
+/* ================================================================
+   WAYANAD ELEGANCE 2026 — app.js  (Final Plan v5.0)
+================================================================ */
+
+/* CURSOR */
+const CI=document.getElementById('CI'),CO=document.getElementById('CO');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;CI.style.left=mx+'px';CI.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;CO.style.left=rx+'px';CO.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.ach,.brow,.wc,.dtab,.srl,.hb-cta,.hb1,.hb2,.ncta,.booking-card,.bk-contact,.sitem,.tt-spec').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+/* NAV */
+window.addEventListener('scroll',()=>document.getElementById('NAV').classList.toggle('stuck',scrollY>60));
+
+/* COUNTDOWN */
+function tick(){
+  const t=new Date('2026-03-27T20:00:00+05:30').getTime();
+  const d=Math.max(0,t-Date.now());
+  const p=n=>String(Math.floor(n)).padStart(2,'0');
+  document.getElementById('cd-d').textContent=p(d/864e5);
+  document.getElementById('cd-h').textContent=p((d%864e5)/36e5);
+  document.getElementById('cd-m').textContent=p((d%36e5)/6e4);
+  document.getElementById('cd-s').textContent=p((d%6e4)/1e3);
+}
+tick();setInterval(tick,1000);
+
+/* DAY TABS */
+function switchDay(id,el){
+  document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  document.querySelectorAll('.dpanel').forEach(p=>p.classList.remove('on'));
+  document.getElementById('dp-'+id).classList.add('on');
+}
+
+/* ── ACTIVITY DATA (Final Plan v5.0) ─────────────────────────── */
+const ACTS=[
+  {
+    key:"lakkidi", pos:"center center",
+    num:"01", actNum:"Activity 01 / 10",
+    day:"Friday · 5:15 AM", dayClass:"sat",
+    img:"images/chembra_bg.jpg",
+    name:"Lakkidi Viewpoint — Sunrise on Ghats",
+    desc:"Thamarassery Churam at 5:15 AM — 12 hairpin bends where the Western Ghats crack open and clouds sit below you. The mist is thick, the light is gold, and this is the very first group photo of the trip. 45 minutes. Free. The mist burns off by 7 AM so this exact window is everything.",
+    facts:[{l:"Entry",v:"Free"},{l:"Duration",v:"45 min"},{l:"Timing",v:"5:15 AM"}],
+    why:["Mist at 5:15 AM is the golden window — burns off completely by 7 AM","The opening photo of the trip — everyone fresh, misty ghats behind, first light","Bookend stop — you pass Lakkidi both ways, completely different mood each time"],
+    maps:"https://www.google.com/maps/search/Lakkidi+Viewpoint+Wayanad",
+    yt:"https://www.youtube.com/results?search_query=Lakkidi+viewpoint+sunrise+Wayanad+ghats",
+    srch:"https://www.google.com/search?q=Lakkidi+Thamarassery+Churam+viewpoint+Wayanad",
+    price:"Free", pnote:"no entry · scenic stop", dur:"Friday 5:15 AM\n45 min"
+  },
+  {
+    key:"edakkal", pos:"center center",
+    num:"02", actNum:"Activity 02 / 10",
+    day:"Saturday · 10:30 AM", dayClass:"sat", heroTag:"Cultural Opener",
+    img:"images/edakkal.jpg",
+    name:"Edakkal Caves — 6,000-Year-Old Carvings",
+    desc:"A natural cave cleft in the Ambukuthi hills. Neolithic rock engravings — human figures, animals, spirals carved 6,000 years ago. 45-minute climb with stairs and handrails throughout. Placed FIRST on Saturday because it is the furthest point (44km from resort) — smart routing means zero backtracking all day. Natural light shaft inside makes the photography incredible.",
+    facts:[{l:"Age",v:"6,000+ Years"},{l:"Distance",v:"44km from resort"},{l:"Duration",v:"~1.5 hrs"}],
+    why:["Furthest point on Saturday — done first so the whole day routes back efficiently with zero backtracking","6,000-year-old Neolithic carvings — nothing else on the trip compares for uniqueness","Natural light shaft inside the cave cleft = extraordinary photography","Stairs and handrails throughout — every person in the group reaches the carvings"],
+    maps:"https://www.google.com/maps/search/Edakkal+Caves+Sulthan+Bathery+Wayanad",
+    yt:"https://www.youtube.com/results?search_query=Edakkal+caves+Wayanad+prehistoric+carvings",
+    srch:"https://www.google.com/search?q=Edakkal+Caves+Wayanad+6000+year+old+carvings",
+    price:"₹800", pnote:"group entry × 16 · Saturday 10:30 AM", dur:"Saturday 10:30 AM\n~1.5 hrs"
+  },
+  {
+    key:"phantom", pos:"center center",
+    num:"03", actNum:"Activity 03 / 10",
+    day:"Saturday · 12:00 PM", dayClass:"sat",
+    img:"images/chembra_bg.jpg",
+    name:"Phantom Rock — Skull Formation",
+    desc:"A giant rock that looks unmistakably like a human skull — panoramic valley views from the base. Only 5km from Edakkal, perfectly on the route back. Free entry, just ₹20 parking. 30 minutes. The kind of stop that photos extremely well and takes no planning whatsoever.",
+    facts:[{l:"Entry",v:"Free"},{l:"Distance",v:"5km from Edakkal"},{l:"Duration",v:"30 min"}],
+    why:["5km from Edakkal — literally on the route back, zero detour cost","Free entry — the easiest yes on the itinerary","Skull-shaped rock = one of those photos everyone posts immediately","30 minutes only — moves the day forward without any drag"],
+    maps:"https://www.google.com/maps/search/Phantom+Rock+Ambalavayal+Wayanad",
+    yt:"https://www.youtube.com/results?search_query=Phantom+Rock+Ambalavayal+Wayanad+skull",
+    srch:"https://www.google.com/search?q=Phantom+Rock+Ambalavayal+Wayanad",
+    price:"Free", pnote:"₹20 parking only · on route from Edakkal", dur:"Saturday 12:00 PM\n30 min"
+  },
+  {
+    key:"zipline", pos:"center center",
+    num:"04", actNum:"Activity 04 / 10",
+    day:"Saturday · 12:30 PM", dayClass:"sat", heroTag:"The Thrill",
+    img:"images/zipline.jpg",
+    name:"Karapuzha Zipline + ATV",
+    desc:"Kerala longest 605m zipline over the Karapuzha dam reservoir — you fly at full speed with aerial views of Chembra Peak in the distance. After the zipline: ATV through rubber and pepper plantations. Both in the same zone, 7km from Phantom Rock. Pre-booked for 12:30 PM Saturday. Harness and helmet provided. Open till 6 PM.",
+    facts:[{l:"Zipline",v:"605m · Kerala Longest"},{l:"Also",v:"ATV Riding"},{l:"Duration",v:"~1.5 hrs"}],
+    why:["Kerala longest dam zipline — aerial views of Chembra Peak during the flight","ATV through rubber and pepper plantations — completely different terrain from the trek","7km from Phantom Rock — same cluster, same direction, zero wasted driving","Pre-booked slot means 16 people walk straight in at 12:30 PM Saturday"],
+    maps:"https://www.google.com/maps/search/Karapuzha+Adventure+Park+Wayanad",
+    yt:"https://www.youtube.com/results?search_query=Karapuzha+605m+zipline+ATV+Wayanad",
+    srch:"https://www.google.com/search?q=Karapuzha+Adventure+Park+zipline+ATV+Wayanad+booking",
+    price:"~₹11,840", pnote:"group · zipline + ATV · pre-booked 12:30 PM Sat", dur:"Saturday 12:30 PM\n~1.5 hrs"
+  },
+  {
+    key:"banasura", pos:"center 25%",
+    num:"05", actNum:"Activity 05 / 10",
+    day:"Saturday · 5:45 PM", dayClass:"sat", heroTag:"Golden Hour",
+    img:"images/banasura.jpg",
+    name:"Banasura Sagar Dam — Electric Buggy Sunset",
+    desc:"Asia largest earthen dam, 5 minutes from Seagot Resort. Electric buggies carry the squad to the summit at golden hour — the reservoir with its scattered islands spread below, mountain ranges behind, amber light flooding the scene. The group panoramic from the dam top is the widest money shot of the trip. ₹150 per person.",
+    facts:[{l:"Scale",v:"Asia Largest"},{l:"Buggy",v:"₹150/person"},{l:"Drive",v:"5 min from resort"}],
+    why:["Asia largest earthen dam at golden hour = a genuinely monumental backdrop","Electric buggy to the top — maximum elevation, minimum effort, fully scenic ride","5 min from resort — seamless evening, no transit stress at all","Group panoramic from the dam top is the best wide-angle shot of the trip"],
+    maps:"https://www.google.com/maps/search/Banasura+Sagar+Dam+Wayanad",
+    yt:"https://www.youtube.com/results?search_query=Banasura+Sagar+dam+sunset+electric+buggy+Wayanad",
+    srch:"https://www.google.com/search?q=Banasura+Sagar+Dam+electric+buggy+timings",
+    price:"₹2,400", pnote:"₹150/person × 16 · golden hour · Sat 5:45 PM", dur:"Saturday 5:45 PM\n~1 hr"
+  },
+  {
+    key:"resort", pos:"center center",
+    num:"06", actNum:"Activity 06 / 10",
+    day:"Saturday Night", dayClass:"night", heroTag:"Basecamp",
+    img:"images/resort.jpg",
+    name:"Seagot Banasura Resorts",
+    desc:"Early check-in confirmed at 6:30 AM Saturday — hot shower and resort breakfast after the overnight TT journey, then 3.5 hours rest before the day begins. Check-in again at 4 PM after activities. Bonfire after dinner at 7 PM. The entire group in one place. Sleep by 11 PM — gives 6 hours before the 5 AM Chembra wake-up. Pool and fishing activity available.",
+    facts:[{l:"Check-in",v:"6:30 AM Early"},{l:"Rate",v:"₹1,600/person"},{l:"Includes",v:"Breakfast"}],
+    why:["Early check-in at 6:30 AM = hot shower and rest after overnight TT before Saturday activities start","₹1,600 per person including breakfast is exceptional value for a reservoir-facing resort","Bonfire and team dinner at 7 PM is the social peak of the trip","11 PM sleep gives exactly 6 hours before 5 AM Chembra wake-up — perfectly optimised"],
+    maps:"https://www.google.com/maps/search/Seagot+Banasura+Resorts+Wayanad",
+    yt:"https://www.youtube.com/results?search_query=Seagot+Banasura+resort+Wayanad+pool+review",
+    srch:"https://www.google.com/search?q=Seagot+Banasura+Resorts+Wayanad+review",
+    price:"₹25,600", pnote:"₹1,600/person × 16 · breakfast incl. · CONFIRMED", dur:"Early check-in 6:30 AM\nBonfire · Sleep 11 PM"
+  },
+  {
+    key:"chembra", pos:"center center",
+    num:"07", actNum:"Activity 07 / 10",
+    day:"Sunday · 7:00 AM", dayClass:"sun", heroTag:"The Hero Moment",
+    img:"images/chembra.jpg",
+    name:"Chembra Peak — Heart-Shaped Lake Trek",
+    desc:"Wayanad crown jewel. 2,100m above sea level. The Hridayathadakam — a naturally heart-shaped lake that has never dried in recorded history, not in any drought year, ever. 7km round trip, about 4 hours. Queue at ticket counter by 6:15 AM — counter opens 7 AM, only 200 slots per day. Steel water bottles mandatory. Most photographed moment in all of Wayanad.",
+    facts:[{l:"Altitude",v:"2,100m ASL"},{l:"Daily Cap",v:"200 only"},{l:"Trek",v:"7km · ~4 hrs"}],
+    why:["Heart-shaped lake = most photographed, most shared moment in all of Wayanad","Never dried in recorded history — geologically and visually extraordinary","Queue by 6:15 AM — counter opens 7 AM, only 200 slots, positioned strategically on Sunday","Sunday placement means Saturday is the rest day, proper sleep before the biggest physical effort"],
+    maps:"https://www.google.com/maps/search/Chembra+Peak+Meppadi+Wayanad",
+    yt:"https://www.youtube.com/results?search_query=Chembra+peak+heart+lake+trek+Wayanad+vlog",
+    srch:"https://www.google.com/search?q=Chembra+Peak+Wayanad+forest+office+booking+200+slots",
+    price:"~₹3,186", pnote:"group entry · verify pricing on call · +91 94958 80821", dur:"Sunday 7:00 AM\n7km · ~4 hrs"
+  },
+  {
+    key:"kandi", pos:"center center",
+    num:"08", actNum:"Activity 08 / 10",
+    day:"Sunday · 11:30 AM", dayClass:"sun", heroTag:"Pure Offroad",
+    img:"images/bridge.jpg",
+    name:"900 Kandi Offroad Jeep + Glass Bridge",
+    desc:"18km from Chembra — same Meppadi area, zero wasted driving. 4x4 open-top jeeps through rocky trails, steep climbs, and dense Wayanad forest — pure offroad adrenaline after the morning trek. Glass bridge 100 feet above the valley with Chembra Peak visible directly behind you. Archery and rifle shooting inside the park. 3 jeeps for 16 people, ₹3,600 total.",
+    facts:[{l:"Jeeps",v:"3 × 4x4 Offroad"},{l:"Bridge",v:"Glass · 100ft high"},{l:"Duration",v:"~1.5 hrs"}],
+    why:["18km from Chembra — same cluster, perfect back-to-back with the morning trek","4x4 offroad jeeps through dense forest = completely different energy from the trek","Glass bridge with Chembra Peak visible behind you = the best single-frame photo of Sunday","Archery and rifle shooting as bonus activities inside the same park"],
+    maps:"https://www.google.com/maps/search/900+Kandi+offroad+jeep+safari+Wayanad",
+    yt:"https://www.youtube.com/results?search_query=900+Kandi+offroad+jeep+glass+bridge+Wayanad",
+    srch:"https://www.google.com/search?q=900+Kandi+jeep+safari+glass+bridge+Meppadi+Wayanad",
+    price:"₹3,600", pnote:"3 jeeps for 16 · offroad + glass bridge · Sun 11:30 AM", dur:"Sunday 11:30 AM\n~1.5 hrs"
+  },
+  {
+    key:"kanthanpara", pos:"center center",
+    num:"09", actNum:"Activity 09 / 10",
+    day:"Sunday · Optional", dayClass:"sun",
+    img:"images/kanthanpara.jpg",
+    name:"Kanthanpara Falls — View from Banks",
+    desc:"A wide waterfall hidden in the tea gardens near Meppadi. View from the banks only. 20 minutes, free. The tea estate path to the viewpoint is beautiful. This is the optional Sunday stop — include it if the day is running smoothly, drop it without regret if 900 Kandi runs long or the team wants more buffer time in Kalpetta.",
+    facts:[{l:"Entry",v:"Free"},{l:"Duration",v:"20 min max"},{l:"Status",v:"Optional"}],
+    why:["Free and on route = no downside if time allows","Tea garden backdrop makes for the most cinematic waterfall photo in Wayanad","Genuinely optional — the plan works perfectly without this stop","View from banks only — respects the no-water-activities constraint throughout"],
+    maps:"https://www.google.com/maps/search/Kanthanpara+Waterfalls+Meppadi+Wayanad",
+    yt:"https://www.youtube.com/results?search_query=Kanthanpara+waterfalls+Wayanad+tea+garden",
+    srch:"https://www.google.com/search?q=Kanthanpara+Waterfalls+Wayanad",
+    price:"Free", pnote:"view from banks · optional stop", dur:"Sunday · if time allows\n20 min max"
+  },
+  {
+    key:"lakkidi2", pos:"center center",
+    num:"10", actNum:"Activity 10 / 10",
+    day:"Sunday · 6:10 PM", dayClass:"sun",
+    img:"images/chembra_bg.jpg",
+    name:"Lakkidi Return — Golden Evening Bookend",
+    desc:"The same Lakkidi Viewpoint from Friday 5:15 AM — but now it is 6:10 PM on Sunday and the light is completely different. A 10-minute stop on the way out. The bookend of the trip. The photo you take here will look and feel nothing like the one at dawn on Friday. That is the whole point.",
+    facts:[{l:"Entry",v:"Free"},{l:"Duration",v:"10 min"},{l:"Mood",v:"Golden Evening"}],
+    why:["Perfect bookend — same viewpoint, opposite light, different team (the trip happened between these two stops)","10 minutes, free, zero effort — the definition of zero downside","The contrast between 5:15 AM Friday mist and 6:10 PM Sunday golden light is the trip in a single frame"],
+    maps:"https://www.google.com/maps/search/Lakkidi+Viewpoint+Wayanad",
+    yt:"https://www.youtube.com/results?search_query=Lakkidi+viewpoint+Wayanad+sunset",
+    srch:"https://www.google.com/search?q=Lakkidi+Thamarassery+Churam+Wayanad",
+    price:"Free", pnote:"bookend stop · 10 min · on route home", dur:"Sunday 6:10 PM\n10 min"
+  }
+];
+
+/* BUILD CHIPS */
+const CC=document.getElementById('CHIPS');
+ACTS.forEach((a,i)=>{
+  const bc=a.dayClass==='sat'?'sat':a.dayClass==='sun'?'sun':'hero';
+  const badge=a.heroTag
+    ?`<span class="ach-badge hero">${a.heroTag}</span>`
+    :`<span class="ach-badge ${bc}">${a.day}</span>`;
+  CC.innerHTML+=`<div class="ach" id="ach-${a.key}" onclick="showAct(${i},this)">
+    <div class="ach-num">${a.num}</div>
+    <div class="ach-info"><div class="ach-day">${a.day}</div>
+    <div class="ach-name">${a.name.split('—')[0].split('–')[0].trim()}</div>${badge}</div>
+    <div class="ach-arr">↗</div></div>`;
+});
+
+/* PROGRESS DOTS */
+const AP=document.getElementById('aprog');
+ACTS.forEach((_,i)=>AP.innerHTML+=`<div class="apd" id="apd-${i}"></div>`);
+
+/* SHOW ACTIVITY */
+let curAct=-1;
+function showAct(idx,el){
+  const a=ACTS[idx]; curAct=idx;
+  document.querySelectorAll('.ach').forEach(c=>c.classList.remove('sel'));
+  (el||document.getElementById('ach-'+a.key)).classList.add('sel');
+  const hint=document.getElementById('ACT-HINT');
+  if(hint) hint.style.opacity='0';
+  const imgEl=document.getElementById('sl-img');
+  imgEl.src=a.img; imgEl.alt=a.name; imgEl.style.objectPosition=a.pos||'center';
+  document.getElementById('sl-bignum').textContent='0'+a.num;
+  const db=document.getElementById('sl-dbadge');
+  db.className='sl-dbadge '+a.dayClass; db.textContent=a.day;
+  const ht=document.getElementById('sl-htag');
+  if(a.heroTag){ht.style.display='';ht.textContent=a.heroTag;}else{ht.style.display='none';}
+  document.getElementById('sr-num').textContent=a.actNum;
+  document.getElementById('sr-name').textContent=a.name;
+  document.getElementById('sr-desc').textContent=a.desc;
+  document.getElementById('sr-facts').innerHTML=a.facts.map(f=>`<div class="srf"><div class="srf-l">${f.l}</div><div class="srf-v">${f.v}</div></div>`).join('');
+  document.getElementById('sr-why').innerHTML=a.why.map(w=>`<div class="srw">${w}</div>`).join('');
+  document.getElementById('sr-links').innerHTML=`
+    <a class="srl maps" href="${a.maps}" target="_blank">📍 Google Maps</a>
+    <a class="srl yt" href="${a.yt}" target="_blank">▶ YouTube</a>
+    <a class="srl srch" href="${a.srch}" target="_blank">🔍 More Info</a>`;
+  document.getElementById('sr-price').textContent=a.price;
+  document.getElementById('sr-pnote').textContent=a.pnote;
+  document.getElementById('sr-dur').innerHTML=a.dur.replace('\n','<br>');
+  document.querySelectorAll('.apd').forEach((d,i)=>d.classList.toggle('on',i===idx));
+  document.getElementById('btn-prev').disabled=idx===0;
+  document.getElementById('btn-next').disabled=idx===ACTS.length-1;
+  const stage=document.getElementById('act-stage');
+  stage.classList.remove('show'); void stage.offsetWidth; stage.classList.add('show');
+  document.querySelectorAll('.srl').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+  });
+  setTimeout(()=>{const r=stage.getBoundingClientRect();if(r.top<80)stage.scrollIntoView({behavior:'smooth',block:'nearest'});},60);
+}
+function navAct(d){if(curAct+d>=0&&curAct+d<ACTS.length)showAct(curAct+d);}
+
+/* SCROLL REVEAL */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});
+},{threshold:.04});
+document.querySelectorAll('.rv,.rv2,.rv3').forEach(el=>obs.observe(el));
+setTimeout(()=>{document.querySelectorAll('.rv,.rv2,.rv3').forEach(el=>el.classList.add('on'));},0);
+
+</script>
 </body>
 </html>
