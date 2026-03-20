@@ -1,3 +1,21 @@
+/* HERO ANIMATION FALLBACK */
+// Ensure hero elements are always visible even if CSS animations fail
+setTimeout(()=>{
+  document.querySelectorAll('.ht-line,.h-kicker,.h-divider,.h-sub,.h-btns,.h-cd,.h-scroll').forEach(el=>{
+    el.style.opacity='1';
+    el.style.transform='none';
+  });
+},1500);
+// Also trigger immediately on load
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('.ht-line,.h-kicker,.h-divider,.h-sub,.h-btns,.h-cd').forEach(el=>{
+      el.style.opacity='1';
+      el.style.transform='none';
+    });
+  },800);
+});
+
 /* ================================================================
    WAYANAD ELEGANCE 2026 — app.js  (Final Plan v5.0)
 ================================================================ */
@@ -242,4 +260,4 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});
 },{threshold:.04});
 document.querySelectorAll('.rv,.rv2,.rv3').forEach(el=>obs.observe(el));
-setTimeout(()=>{document.querySelectorAll('.rv,.rv2,.rv3').forEach(el=>el.classList.add('on'));},2000);
+setTimeout(()=>{document.querySelectorAll('.rv,.rv2,.rv3').forEach(el=>el.classList.add('on'));},0);
